@@ -22,6 +22,14 @@ const server = app.listen(process.env.PORT || 9000, () => {
 
 route(app)
 
+//Index page
+const path = require('path');
+app.get('/', (req, res) => res.sendFile(path.join(__dirname,'/components/views/index.html')))
+// Err
+app.get('*', (req, res) => res.status(404).sendFile(path.join(__dirname,'/components/views/index.html')))
+
+// Author: qnp //
+
 const io = require('socket.io')(server, {
     cors: {
         origin: '*',
